@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "reyzeal/plutjogja",
+    "description": "Framework PLUT Jogja",
+    "keywords": ["framework", "laravel","PLUT JOGJA"],
     "license": "MIT",
     "type": "project",
     "require": {
