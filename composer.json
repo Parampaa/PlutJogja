@@ -1,7 +1,7 @@
 {
-    "name": "reyzeal/plutjogja",
-    "description": "Framework PLUT JOGJA dengan Laravel",
-    "keywords": ["framework", "laravel","PLUT JOGJA","Dinas Koperasi dan UMKM Yogyakarta"],
+    "name": "laravel/laravel",
+    "description": "The Laravel Framework.",
+    "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
     "require": {
@@ -10,7 +10,10 @@
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
         "maatwebsite/excel": "^2.1",
+        "phpoffice/phpexcel": "^1.8",
+        "phpoffice/phpspreadsheet": "^1.0",
         "phpoffice/phpword": "^0.14.0",
+        "predis/predis": "^1.1",
         "wrklst/docxmustache": "^0.0.20"
     },
     "require-dev": {
