@@ -18,14 +18,6 @@
 		<input type="text" name="namaBadan" value="<% mitraEdit.namaBadan %>" class="form-control" required>
 	</div>
 	<div class="form-group">
-		<label>Jenis Usaha</label>
-		<select name="jenis" class="form-control">
-			@foreach($jenisUsaha as $list)
-			<option value="{{$list->id}}" ng-selected="mitraEdit.jenis == list.id ">{{ $list->nama }}</option>
-			@endforeach
-		</select>
-	</div>
-	<div class="form-group">
 		<label>Anggota Kelompok/Sentra</label>
 		<input type="text" name="sentra" class="form-control" value="<% mitraEdit.sentra %>">
 	</div>
@@ -36,7 +28,7 @@
 	<div class="form-group">
 		<label>Kabupaten</label>
 		<select name="kabupaten" class="form-control" required="" ng-model="kabselected">
-			<option>Pilih Kabupaten</option>
+			<option value="">Pilih Kabupaten</option>
 			<option ng-repeat="i in lokasi" value="<% i.id %>" ng-selected="mitraEdit.kabupaten == i.id "><% i.nama %></option>
 		</select>
 		<!-- <input type="text" name="kabupaten" class="form-control" required=""> -->
@@ -44,7 +36,7 @@
 	<div class="form-group">
 		<label>Kecamatan</label>
 		<select name="kecamatan" class="form-control" required="">
-			<option>Pilih Kecamatan</option>
+			<option value="">Pilih Kecamatan</option>
 			<option ng-repeat="i in lokasi[kabselected-1].kecamatan" value="<% i.id %>" ng-selected="mitraEdit.kecamatan == i.id "><% i.kecamatan %></option>
 			
 		</select>
@@ -86,12 +78,15 @@
 	<div class="form-group">
 		<label>Status Legalitas Usaha</label>
 		<select name="legalitas" class="form-control" required="">
-			<option value="Domisili" ng-selected="<% mitraEdit.legalitas %>">Domisili</option>
+			@foreach($legalitas as $i)
+				<option value="{{$i->nama}}">{{$i->nama}}</option>
+			@endforeach
+			<!-- <option value="Domisili" ng-selected="<% mitraEdit.legalitas %>">Domisili</option>
 			<option value="Akta Pendirian" ng-selected="<% mitraEdit.legalitas %>">Akta Pendirian</option>
 			<option value="SIUP" ng-selected="<% mitraEdit.legalitas %>">SIUP</option>
 			<option value="TDP" ng-selected="<% mitraEdit.legalitas %>">TDP</option>
 			<option value="IUMK" ng-selected="<% mitraEdit.legalitas %>">IUMK</option>
-			<option value="Domisili" ng-selected="<% mitraEdit.legalitas %>">Belum Ada</option>
+			<option value="Domisili" ng-selected="<% mitraEdit.legalitas %>">Belum Ada</option> -->
 		</select>
 	</div>
 	<div class="form-group">
@@ -100,23 +95,11 @@
 	</div>
 	<div class="form-group">
 		<label>Total Asset</label>
-		<select name="asset" class="form-control">
-			<option value="mikro" ng-selected="<% mitraEdit.asset %>">Mikro < 50 juta</option>
-			<option value="kecil" ng-selected="<% mitraEdit.asset %>">Kecil 50-500 juta</option>
-			<option value="menengah" ng-selected="<% mitraEdit.asset %>">Menengah 500 juta - 10 M</option>
-			<option value="isi" ng-selected="<% mitraEdit.asset %>">Lainnya</option>
-		</select>
-		<input type="number" name="asset_isian" class="form-control optional">
+		<input type="number" name="asset" class="form-control" value="<% mitraEdit.asset %>" placeholder="Nominal">
 	</div>
 	<div class="form-group">
 		<label>Total Omset/Tahun</label>
-		<select name="omset" class="form-control">
-			<option value="mikro" ng-selected="<% mitraEdit.omset %>">Mikro < 300 juta</option>
-			<option value="kecil" ng-selected="<% mitraEdit.omset %>">Kecil 300 juta - 2.5 M</option>
-			<option value="menengah" ng-selected="<% mitraEdit.omset %>">Menengah 2.5 M - 50 M</option>
-			<option value="isi" ng-selected="<% mitraEdit.omset %>">Lainnya</option>
-		</select>
-		<input type="number" name="omset_isian" class="form-control optional">
+		<input type="number" name="omset" class="form-control" value="<% mitraEdit.omset %>" placeholder="Nominal">
 	</div>
 	<div class="form-group">
 		<label>Volume Usaha/Bulan</label>
@@ -134,18 +117,22 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<div class="border p-5">
-			<label>Foto Produk <span class="count"></span></label>
-			<input type="file" class="produk form-control-file" name="fproduk[]" accept="image/*" multiple>
-			<div class="row">
-				<div class="col-md-6 col-12 d-flex" ng-repeat="i in mitraProduk">
-					<a class="p-2 align-self-center" href="#">
-						<img class="img-fluid img-thumbnail" src="<% i.image %>">
-					</a>
-					<button class="btn btn-danger align-self-center" ng-click="mitra__image__delete(i.id)">Hapus</button>
-				</div>	
-			</div>
-		</div>
+		<label>Pelatihan</label>
+		<textarea name="pelatihan" class="form-control"><% mitraEdit.pelatihan %></textarea>
+	</div>
+	<div class="form-group">
+		<label>Gallery Produk</label>
+		<select class="form-control" name="gallery">
+			<option value="1" ng-selected="mitraEdit.gallery">Ya</option>
+			<option value="0" ng-selected="!mitraEdit.gallery">Tidak</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label>Pustakapreneur</label>
+		<select class="form-control" name="pustakapreneur">
+			<option value="1" ng-selected="mitraEdit.pustakapreneur">Ya</option>
+			<option value="0" ng-selected="!mitraEdit.pustakapreneur">Tidak</option>
+		</select>
 	</div>
 </form>
 @push('script')

@@ -1,95 +1,80 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+        @include('layouts.favicon')
+
+      <!--   <script type="text/javascript" src="jquery.min.js"></script>
+        <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+         -->
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
+        <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}" type="text/css">
+        <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}" type="text/css"> 
         <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
+            .tombol{
+              height: 50px;
+              font-size: 20px;
+              width: 125px;
             }
-
-            .full-height {
-                height: 100vh;
+            .tombol:hover{
+              color: black;
             }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
+            #backstyle {
+              background:url('{{asset('img/plut.jpg')}}');
+              
+              background-size: cover;
+              background-color: black;
             }
         </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
+</head>
+  
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
+<body>
+  <nav class="navbar fixed-top navbar-expand-md bg-dark navbar-dark">
+    <div class="container ml-3">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+            <img class="img-fluid" src="{{asset('img/logocispu.png')}}" width="35" height="35"> 
+          </li>
+         <li class="nav-item" >
+            <a class="btn navbar-btn pl-1 text-white">CIS PLUT DIY</a>
+          </li>
+      </ul>
+        
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
+          
+      </div>
+    </div>
+  </nav>
+  <!-- background style="background: rgba(200, 200, 200, 0.25);" -->
+  <div 
+    id="backstyle" 
+    class="w-100 h-100 position-absolute"> 
+        <div class="container ml-2 d-flex align-" style="padding-top: 10%;">
+            <div 
+              style="background: rgba(75, 75, 75, 0);" 
+              class="jumbotron d-inline-flex p-2">
+                 <div > 
+                   <h1 style="color: white">Sistem Rekap Data UMKM</h1><br>
+                   
+        
+                 <center><a class="btn tombol btn-outline-light btn-lg a" href="{{route('login')}}">Login</a></center>
+                    
+                   </div>
+                 
+             </div>
+
         </div>
-    </body>
+        
+  </div>
+
+  <script src="{{asset('js/jquery.min.js')}}"></script>
+  <script src="{{asset('js/popper.min.js')}}"></script>
+  <script src="{{asset('js/bootstrap.min.js')}}"></script>
+  
+</body>
+
 </html>

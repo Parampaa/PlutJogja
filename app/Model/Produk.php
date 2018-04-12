@@ -14,4 +14,7 @@ class Produk extends Model
     public function milik(){
     	return $this->belongsTo('\App\Model\Mitra','mitra');
     }
+    public function jenisUsaha(){
+    	return $this->belongsTo('\App\Model\JenisUsaha','jenis');
+    }
 }

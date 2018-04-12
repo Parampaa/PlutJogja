@@ -12,4 +12,7 @@ class Kabupaten extends Model
     public function daftarKecamatan(){
     	return $this->hasMany('App\Model\Lokasi\Kecamatan','id_kabupaten');
     }
+    public function daftarMitra(){
+    	return $this->hasMany('App\Model\Mitra','kabupaten');
+    }
 }

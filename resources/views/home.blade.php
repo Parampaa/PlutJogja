@@ -34,11 +34,49 @@
 		width:100%;
 		height:100%;
 		z-index: 1;
-		display:block;
+		display:flex;
 	}
 	.msg {
 
 	}
+	.menu-konsul {
+		margin-top:100px;
+		background-color: #888;
+	}
+	.menu-konsul .col-4.d-flex {
+		padding: 50px;
+	}
+	.menu-konsul a {
+		color: white;
+	}
+	.menu-konsul i {
+		font-size : 36px;
+	}
+	.menu-konsul .col-4.d-flex:hover {
+		background-color: #f96000;
+	}
+	thead .form-control{
+	width:150px;
+}
+	/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #95a5a6; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #2980b9; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
 @endpush
 
 @section('content')
@@ -49,10 +87,13 @@
 					<p class="display-4">PLUT JOGJA</p>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link active" href="#">Mitra</a>
+					<a class="nav-link active" href="#mitra" data-toggle="collapse" data-parent="#contents">Mitra</a>
 				</li>
+				<!-- <li class="nav-item">
+					<a class="nav-link" href="#konsultasi" data-toggle="collapse" data-parent="#contents">Konsultasi</a>
+				</li> -->
 				<li class="nav-item">
-					<a class="nav-link" href="#">Konsultan</a>
+					<a class="nav-link" href="#laporan" data-toggle="collapse" data-parent="#contents">Laporan</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
@@ -71,92 +112,25 @@
 			</a>
 		</div>
 	</div>
-	<div class="container-fluid content">
-		<div class="mitra module p-5" ng-controller="mitra">
-			<div class="header">
-				<h3 class="display-3 text-center">Pengelolaan Mitra PLUT</h3>
-			</div>
-			<div class="body">
-				@if (Session::has('msg'))
-				<div class="msg">
-					<div class="alert alert-success alert-dismissible fade show" role="alert">
-					  <strong>Sukses!</strong> {{Session::get('msg')}}
-					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					    <span aria-hidden="true">&times;</span>
-					  </button>
-					</div>
-				</div>
-				@endif
-				<button class="btn btn-success" data-target="#form-pendaftaran" data-toggle="modal">Tambah</button>
-				@include('table.list-mitra')
-				@include('dialog.pendaftaran-mitra')
-				@include('dialog.edit-mitra')
-			</div>
+	<div id="contents" class="container-fluid content" data-children=".content-item">
+		<div class="content-item">
+			@include('module.mitra')
 		</div>
-		@push('script')
-			<script type="text/javascript">
-				plutAPP.controller('mitra',function($scope,$http){
-					$scope.lokasi = JSON.parse('{!!$lokasi!!}');
-					console.log($scope.lokasi);
-					$scope.data = null;
+		
+		<!-- <div class="content-item">
+			@include('module.konsultasi')
+		</div> -->
 
-					$scope.mitra__btn__save = function(e){
-						angular.element('.modal.show').find('form').submit();
-						//angular.element(e).find('form').submit();
-						// var dataMitra = angular.element('#form-pendaftaran').find('form').serialize();
-						// $http.post('{{route("mitra-add")}}',dataMitra,
-						// 	{ 
-						// 		headers : {
-      //               			'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
-      //           			}
-      //       			})
-						// .then(function(e){
-						// 	$http.get('{{route("mitra-list")}}').then(function(e){
-						// 		console.log('--');
-						// 		console.log(e);
-						// 		console.log(dataMitra);
-						// 		$scope.mitra__update__list();
-						// 	});
-						// });
-					}
-					$scope.mitra__update__list = function(){
-						$http.get('{{route("mitra-list")}}').then(function(e){
-							console.log(e);
-							$scope.data = e.data;
-						});
-					};
-					$scope.mitra__delete = function(id){
-						console.log(id);
-						$http.post('{{url("kelola/mitra/delete")}}/'+id,{'_token':'{{csrf_token()}}'})
-						.then(function(e){
-							$scope.mitra__update__list();
-						});
-					};
-					$scope.mitraEdit = null;
-					$scope.kabselected = 0;
-					$scope.mitra__edit = function(id){
-						$http.get('{{route("mitra-show")}}/?id='+id)
-						.then(function(e){
-							console.log(e.data);
-							$scope.mitraEdit = e.data;
-							$scope.kabselected = $scope.mitraEdit.kabupaten;
-							
-							$http.get('{{route("mitra-produk")}}/?id='+id)
-							.then(function(e){
-								console.log(e.data);
-								$scope.mitraProduk = e.data;
-							});
-						});
-
-					}
-					$scope.mitra__update__list();
-
-				});
-			</script>
-		@endpush
-		<div class="konsultasi module p-5"></div>
+		<div class="content-item">
+			@include('module.laporan')
+		</div>
 	</div>
-	<div class="backscreen"></div>
+	<div class="backscreen justify-content-center align-items-center text-center">
+		<div class="d-block">
+			<i class="fa fa-cog fa-spin" style="font-size:48px;color: white"></i>
+			<p class="text-white">Loading</p>
+		</div>
+	</div>
 	@include('dialog.error')
 @endsection
 @push('script')
@@ -198,41 +172,17 @@
 			});
 			setTimeout(function() {
 				toggle__menu();
+				loading(true);
 			}, 500);
 		});
+
+		function loading(set){
+			if(set){
+				$('.backscreen').fadeIn(250);
+			}
+			else{
+				$('.backscreen').fadeOut(250);
+			}
+		}
 	</script>
 @endpush
-
-
-
-
-
-
-
-
-
-
-
-
-
-@section('hehe')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection

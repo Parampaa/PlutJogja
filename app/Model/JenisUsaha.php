@@ -14,4 +14,7 @@ class JenisUsaha extends Model
     public function pelaku(){
     	return $this->hasMany('App\Model\Mitra','jenis');
     }
+    public function macamProduk(){
+    	return $this->hasMany('App\Model\Produk','jenis');
+    }
 }

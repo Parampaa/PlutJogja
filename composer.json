@@ -1,7 +1,7 @@
 {
-    "name": "reyzeal/plutjogja",
-    "description": "Framework PLUT Jogja",
-    "keywords": ["framework", "laravel","PLUT JOGJA"],
+    "name": "laravel/laravel",
+    "description": "The Laravel Framework.",
+    "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
     "require": {
@@ -48,7 +48,7 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate",
-            "@composer update"
+            "@php artisan FirstInstall:exec"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
