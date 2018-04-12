@@ -9,20 +9,20 @@ Proyek ini merupakan proyek Kerja Praktik yang dilakukan oleh mahasiswa UPN Vete
 
 ## Pemasangan
 Pemasangan dapat dilakukan dengan melakukan tahap-tahap berikut:
-### A. Install Composer
+### A. Install XAMPP
+XAMPP merupakan aplikasi untuk PHP dan MYSQL Server. Pastikan install XAMPP dengan versi PHP > 7.0.0 
+https://www.apachefriends.org/download.html
+
+### B.  Install Composer
 Melakukan pemasangan composer. Composer merupakan pengelola paket software yang dikembangkan dengan berbasis bahasa PHP.
 [Install Composer](https://getcomposer.org/)
 
-### B. Install Project Plut Jogja
+### C. Install Project Plut Jogja
 Silahkan buka command line:
 <pre>
 cd C:/xampp/htdocs/
 composer create-project reyzeal/plutjogja plut
 </pre>
-
-### C. Install Redis Server
-[Install Redis Server](https://github.com/rgl/redis/downloads)
-
 ## Keamanan
 
 Jika terdapat celah keamanan didalam framework ini, silahkan kirim email ke Rizal Ardhi Rahmadani [rizal.ardhi rahmadani](mailto:rizal.ardhi.rahmadani@gmail.com).
