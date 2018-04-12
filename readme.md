@@ -23,6 +23,11 @@ Silahkan buka command line:
 cd C:/xampp/htdocs/
 composer create-project reyzeal/plutjogja plut
 </pre>
+## Penggunaan
+Setelah proses installasi selesai, pastikan XAMPP telah aktif dengan Apache dan Mysql servernya. Kemudian akses browser dengan url:
+<pre>
+http://localhost/plut
+</pre>
 ## Keamanan
 
 Jika terdapat celah keamanan didalam framework ini, silahkan kirim email ke Rizal Ardhi Rahmadani [rizal.ardhi rahmadani](mailto:rizal.ardhi.rahmadani@gmail.com).
