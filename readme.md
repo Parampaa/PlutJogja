@@ -21,7 +21,7 @@ Melakukan pemasangan composer. Composer merupakan pengelola paket software yang 
 Silahkan buka command line:
 <pre>
 cd C:/xampp/htdocs/
-composer create-project reyzeal/plutjogja plut
+composer create-project reyzeal/PlutJogja plut
 </pre>
 ## Penggunaan
 Setelah proses installasi selesai, pastikan XAMPP telah aktif dengan Apache dan Mysql servernya. Kemudian akses browser dengan url:
