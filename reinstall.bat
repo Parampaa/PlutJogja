@@ -1,3 +1,3 @@
-php artisan migrate
-php artisan FirstInstall:exec
+php C:\xampp\htdocs\PlutJogja\artisan migrate
+php C:\xampp\htdocs\PlutJogja\artisan FirstInstall:exec
 pause
